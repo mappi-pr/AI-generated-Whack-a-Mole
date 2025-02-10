@@ -59,7 +59,21 @@ function peepMultiple(numMoles) {
     }
 }
 
+// ローカルストレージからスコアを読み込む関数
+function loadScores() {
+    const savedScores = localStorage.getItem('whackAMoleScores');
+    if (savedScores) {
+        rankings = JSON.parse(savedScores);
+    }
+}
+
+// ローカルストレージにスコアを保存する関数
+function saveScores() {
+    localStorage.setItem('whackAMoleScores', JSON.stringify(rankings));
+}
+
 function startGame() {
+    loadScores(); // ゲーム開始時にスコアを読み込む
     scoreBoard.textContent = 0;
     timeBoard.textContent = 10;
     timeUp = false;
@@ -89,6 +103,7 @@ function endGame() {
     rankings.push(score);
     rankings.sort((a, b) => b - a);
     rankingList.innerHTML = rankings.map((rank, index) => `<li>${index + 1}位: ${rank}点</li>`).join('');
+    saveScores(); // ゲーム終了時にスコアを保存する
     gameOverScreen.style.display = 'block';
     document.querySelector('.game-container').style.display = 'none';
 }
