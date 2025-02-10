@@ -31,7 +31,9 @@ function peep() {
     const time = 1000; // モグラの表示時間を固定
     const hole = randomHole(holes);
     const img = document.createElement('img');
-    img.src = 'mole.png'; // モグラの画像
+    const isCitizen = Math.random() < 0.1; // 10回に1回以下の確率でcitizenを出現させる
+    img.src = isCitizen ? 'citizen.png' : 'mole.png'; // モグラかcitizenの画像を設定
+    img.dataset.type = isCitizen ? 'citizen' : 'mole'; // データ属性でタイプを設定
     img.style.pointerEvents = 'auto'; // クリック可能にする
     img.draggable = false; // ドラッグを無効にする
     img.addEventListener('mousedown', bonk, { once: true });
@@ -110,7 +112,12 @@ function endGame() {
 
 function bonk(e) {
     if (!e.isTrusted) return; // チート防止
-    score++;
+    const type = e.target.dataset.type;
+    if (type === 'citizen') {
+        score -= 2; // citizenをクリックした場合はスコアを-2
+    } else {
+        score++;
+    }
     scoreBoard.textContent = score;
     e.target.style.display = 'none'; // 画像だけを削除
 }
