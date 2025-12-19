@@ -64,6 +64,15 @@ body {
     margin-top: 20px;
 }
 
+#ranking {
+    max-height: 300px;
+    overflow: auto;
+    text-align: left;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px auto;
+}
+
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-1px, -2px) rotate(-1deg); }

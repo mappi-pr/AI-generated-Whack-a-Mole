@@ -65,7 +65,7 @@ function peepMultiple(numMoles) {
 function loadScores() {
     const savedScores = localStorage.getItem('whackAMoleScores');
     if (savedScores) {
-        rankings = JSON.parse(savedScores);
+        rankings = JSON.parse(savedScores).slice(0, 10); // トップ10のみ保持
     }
 }
 
@@ -104,6 +104,7 @@ function endGame() {
     finalScore.textContent = score;
     rankings.push(score);
     rankings.sort((a, b) => b - a);
+    rankings = rankings.slice(0, 10); // トップ10のみ保持
     rankingList.innerHTML = rankings.map((rank, index) => `<li>${index + 1}位: ${rank}点</li>`).join('');
     saveScores(); // ゲーム終了時にスコアを保存する
     gameOverScreen.style.display = 'block';
