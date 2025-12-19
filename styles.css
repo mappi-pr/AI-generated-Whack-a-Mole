@@ -9,6 +9,68 @@ body {
     overflow: hidden; /* スクロールを無効にする */
 }
 
+.mode-selection {
+    text-align: center;
+}
+
+.mode-selection h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.mode-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.mode-button:hover {
+    background-color: #45a049;
+}
+
+.story-screen {
+    text-align: center;
+    max-width: 600px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.story-screen h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.story-screen p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.story-continue-button {
+    padding: 12px 24px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.story-continue-button:hover {
+    background-color: #0b7dda;
+}
+
 .game-container {
     text-align: center;
 }
@@ -21,6 +83,13 @@ body {
 .time-board {
     font-size: 1.5em;
     margin-bottom: 20px;
+}
+
+.stage-board {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #2196F3;
+    font-weight: bold;
 }
 
 .grid {
@@ -62,6 +131,57 @@ body {
     text-align: center;
     font-size: 1.5em;
     margin-top: 20px;
+}
+
+.story-complete {
+    text-align: center;
+    max-width: 600px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.story-complete h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.story-complete p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.menu-button {
+    padding: 12px 24px;
+    font-size: 1.1em;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #757575;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.menu-button:hover {
+    background-color: #616161;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 @keyframes shake {
