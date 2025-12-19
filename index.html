@@ -7,9 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-container">
+    <div class="mode-selection">
+        <h1>モグラ叩きゲーム</h1>
+        <button class="mode-button" data-mode="normal">ノーマルモード</button>
+        <button class="mode-button" data-mode="story">ストーリーモード</button>
+    </div>
+    <div class="story-screen" style="display: none;">
+        <h2 id="story-title">ステージ 1</h2>
+        <p id="story-text"></p>
+        <button class="story-continue-button">続ける</button>
+    </div>
+    <div class="game-container" style="display: none;">
         <div class="score-board">
             <span>スコア: </span><span id="score">0</span>
+        </div>
+        <div class="stage-board" style="display: none;">
+            <span>ステージ: </span><span id="stage">1</span>
         </div>
         <div class="time-board" style="display: none;">
             <span>残り時間: </span><span id="time">10</span>秒
@@ -33,6 +46,21 @@
         <h3>ランキング</h3>
         <ul id="ranking"></ul>
         <button class="restart-button">再挑戦</button>
+        <button class="menu-button">メニューに戻る</button>
+    </div>
+    <div class="story-game-over" style="display: none;">
+        <h2>ゲームオーバー</h2>
+        <p id="story-game-over-message">スコアが低すぎます。村を守れませんでした...</p>
+        <p>ステージ: <span id="failed-stage">1</span></p>
+        <p>総スコア: <span id="story-game-over-score">0</span></p>
+        <button class="restart-story-button">再挑戦</button>
+        <button class="menu-button">メニューに戻る</button>
+    </div>
+    <div class="story-complete" style="display: none;">
+        <h2>ストーリークリア！</h2>
+        <p>おめでとうございます！すべてのステージをクリアしました。</p>
+        <p>総スコア: <span id="story-final-score">0</span></p>
+        <button class="menu-button">メニューに戻る</button>
     </div>
     <script src="script.js"></script>
 </body>
