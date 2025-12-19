@@ -133,6 +133,26 @@ body {
     margin-top: 20px;
 }
 
+.story-game-over {
+    text-align: center;
+    max-width: 600px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.story-game-over h2 {
+    color: #f44336;
+    margin-bottom: 20px;
+}
+
+.story-game-over p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
 .story-complete {
     text-align: center;
     max-width: 600px;

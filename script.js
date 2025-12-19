@@ -17,6 +17,11 @@ const storyText = document.getElementById('story-text');
 const storyContinueButton = document.querySelector('.story-continue-button');
 const storyComplete = document.querySelector('.story-complete');
 const storyFinalScore = document.getElementById('story-final-score');
+const storyGameOver = document.querySelector('.story-game-over');
+const storyGameOverMessage = document.getElementById('story-game-over-message');
+const storyGameOverScore = document.getElementById('story-game-over-score');
+const failedStage = document.getElementById('failed-stage');
+const restartStoryButton = document.querySelector('.restart-story-button');
 const menuButtons = document.querySelectorAll('.menu-button');
 let score = 0;
 let lastHole;
@@ -33,21 +38,24 @@ const storyStages = [
         title: "ステージ 1: 平和な村",
         text: "ある平和な村に、突然モグラが現れ始めました。村の畑を守るため、モグラを退治してください！",
         duration: 15,
-        difficulty: 1
+        difficulty: 1,
+        minScore: 0
     },
     {
         stage: 2,
         title: "ステージ 2: モグラの逆襲",
         text: "モグラの数が増えてきました！さらに、村人に化けたモグラも現れました。村人を叩くとペナルティがあるので注意！",
         duration: 20,
-        difficulty: 2
+        difficulty: 2,
+        minScore: 3
     },
     {
         stage: 3,
         title: "ステージ 3: 最終決戦",
         text: "モグラの王様が現れました！大量のモグラと村人が同時に襲ってきます。畑を守り抜いてください！",
         duration: 25,
-        difficulty: 3
+        difficulty: 3,
+        minScore: 5
     }
 ];
 
@@ -164,8 +172,17 @@ function startGame() {
 
 function endGame() {
     if (gameMode === 'story') {
+        const stage = storyStages[currentStage - 1];
         totalScore += score;
-        if (currentStage < storyStages.length) {
+        
+        // Check if player passed the stage
+        if (score < stage.minScore) {
+            // Game Over - failed the stage
+            storyGameOverScore.textContent = totalScore;
+            failedStage.textContent = currentStage;
+            storyGameOver.style.display = 'block';
+            document.querySelector('.game-container').style.display = 'none';
+        } else if (currentStage < storyStages.length) {
             // 次のステージへ
             currentStage++;
             showStory();
@@ -243,10 +260,19 @@ menuButtons.forEach(button => {
     button.addEventListener('click', () => {
         gameOverScreen.style.display = 'none';
         storyComplete.style.display = 'none';
+        storyGameOver.style.display = 'none';
         document.querySelector('.game-container').style.display = 'none';
         modeSelection.style.display = 'block';
         startButton.textContent = 'ゲーム開始';
         currentStage = 1;
         totalScore = 0;
     });
+});
+
+// ストーリーモード再挑戦ボタン
+restartStoryButton.addEventListener('click', () => {
+    storyGameOver.style.display = 'none';
+    currentStage = 1;
+    totalScore = 0;
+    showStory();
 });
